@@ -31,6 +31,7 @@ def train_model(model, model_name, train_data, val_data, max_epochs=5, learning_
     # try load checkpoint model and optimizer
     try:
         model, optimizer, train_loss_list, val_loss_list = load_checkpoint(model, optimizer, model_name, models_directory)
+        best_loss = val_loss_list[-1]
         print('Loaded pre-trained model.')
     except FileNotFoundError:
         # loss counters
@@ -104,5 +105,3 @@ if __name__ == '__main__':
 
     # train model
     train_model(bert_model, 'baseline_BERT', train_data, val_data)
-
-
